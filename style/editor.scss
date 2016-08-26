@@ -1,6 +1,5 @@
 @import "mixins";
 
-//мои стили
 .editor-title {
   width: 100%;
   border: 0;
@@ -49,22 +48,21 @@ figcaption,
   .paragraph,
   .public-DraftEditorPlaceholder-root {
     margin: 0;
-    margin-bottom: $grid;
     margin-left: $grid;
     margin-right: $grid;
+    margin-bottom: $grid;
 
     @include respond-to(medium) {
-      margin-left: 20%;
-      max-width: $size-medium;
+      max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-right: 10%;
-      margin-left: 35%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
-      margin-left: 40%;
+      margin-left: $grid-col-fixed*2;
     }
   }
 
@@ -72,31 +70,24 @@ figcaption,
     position: relative;
     z-index: 2;
     float: right;
-    margin-left: $grid;
-    margin-bottom: $grid*2;
     font-size: 16px;
-    margin-right: 30%;
-    width: 20%;
 
     @include respond-to(small) {
-      float: left;
-      margin-bottom: $grid*2;
-      width: 40%;
-    }
-
-    @include respond-to(medium) {
-      margin-left: $grid;
-      width: 30%;
-      margin-right: $grid;
-      max-width: 250px;
+      margin-left: $grid*2;
+      float: right;
+      width: $grid-col-fixed;
     }
 
     @include respond-to(large) {
-      width: 20%;
+      float: left;
+      width: 15.5%;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: $grid;
     }
 
     @include respond-to(xlarge) {
-      margin-left: 20%;
+      width: $grid-col-fixed;
     }
   }
 
@@ -105,19 +96,20 @@ figcaption,
     > div > ul {
       margin-left: $grid;
       margin-right: $grid;
+      padding-left: $grid*2;
 
       @include respond-to(medium) {
-        margin-left: 20%;
-        max-width: $size-medium;
+        padding-left: $grid-col-percentage/2;
+        max-width: $grid-col-fixed*5;
       }
 
       @include respond-to(large) {
-        margin-right: 10%;
-        margin-left: 35%;
+        margin-right: $grid-col-percentage;
+        margin-left: $grid-col-percentage*2;
       }
 
       @include respond-to(xlarge) {
-        margin-left: 40%;
+        margin-left: $grid-col-fixed*2;
       }
     }
 
@@ -132,17 +124,16 @@ figcaption,
       margin-right: $grid;
 
       @include respond-to(medium) {
-        margin-left: 20%;
-        max-width: $size-medium;
+        max-width: $grid-col-fixed*5;
       }
 
       @include respond-to(large) {
-        margin-right: 10%;
-        margin-left: 35%;
+        margin-left: $grid-col-percentage*2;
+        margin-right: $grid-col-percentage;
       }
 
       @include respond-to(xlarge) {
-        margin-left: 40%;
+        margin-left: $grid-col-fixed*2;
       }
     }
   }
@@ -158,39 +149,38 @@ figcaption,
     margin-right: $grid;
 
     @include respond-to(medium) {
-      margin-left: 20%;
-      max-width: $size-medium;
+      max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-right: 10%;
-      margin-left: 35%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
-      margin-left: 40%;
+      margin-left: $grid-col-fixed*2;
     }
   }
 
   .embed-component {
     margin-bottom: $grid;
+
     @include respond-to(small) {
       margin-left: $grid;
       margin-right: $grid;
     }
 
     @include respond-to(medium) {
-      margin-left: 20%;
-      max-width: $size-medium;
+      max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-right: 10%;
-      margin-left: 35%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
-      margin-left: 40%;
+      margin-left: $grid-col-fixed*2;
     }
 
     > div {
@@ -211,6 +201,24 @@ figcaption,
   .image {
     position: relative;
     margin-bottom: $grid;
+
+    @include respond-to(small) {
+      margin-left: $grid;
+      margin-right: $grid;
+    }
+
+    @include respond-to(medium) {
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-right: $grid-col-percentage;
+      margin-left: $grid-col-percentage*2;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
 
     > img {
       display: block;
@@ -248,41 +256,32 @@ figcaption,
       }
     }
 
-    @include respond-to(small) {
-      margin-left: $grid;
-      margin-right: $grid;
-    }
-
-    @include respond-to(medium) {
-      margin-left: 20%;
-      max-width: $size-medium;
-    }
-
-    @include respond-to(large) {
-      margin-right: 10%;
-      margin-left: 35%;
-    }
-
-    @include respond-to(xlarge) {
-      margin-left: 40%;
-    }
-
     &.float {
+      padding-left: $grid;
+      width: $grid-col-fixed;
+
       @include respond-to(small) {
-        float: left;
-        margin-bottom: $grid*2;
-        margin-right: $grid*2;
-        width: 40%;
-        max-width: 250px;
+        float: right;
+        margin-bottom: $grid;
+        margin-right: $grid;
       }
 
       @include respond-to(medium) {
-        margin-left: $grid;
-        width: 30%;
+        margin-left: 0;
       }
 
       @include respond-to(large) {
-        width: 20%;
+        float: left;
+        width: 15.5%;
+      }
+
+      @include respond-to(xlarge) {
+        padding-left: $grid;
+        width: $grid-col-fixed;
+      }
+
+      > figcaption {
+        margin-left: 0;
       }
     }
 
@@ -294,19 +293,6 @@ figcaption,
       > .caption {
         margin-left: $grid;
         margin-right: $grid;
-
-        @include respond-to(medium) {
-          margin-left: 20%;
-        }
-
-        @include respond-to(large) {
-          margin-right: 10%;
-          margin-left: 35%;
-        }
-
-        @include respond-to(xlarge) {
-          margin-left: 40%;
-        }
       }
     }
   }
@@ -417,16 +403,16 @@ figcaption,
   left: $grid;
 
   @include respond-to(medium) {
-    left: 20%;
+    left: $grid;
     margin-left: -$grid*2 - $grid/2;
   }
 
   @include respond-to(large) {
-    left: 35%;
+    left: $grid-col-percentage*2;
   }
 
   @include respond-to(xlarge) {
-    left: 40%;
+    left: $grid-col-fixed*2;
   }
 
   i {

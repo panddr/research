@@ -12,8 +12,8 @@ const INLINE_STYLES = [
 const BLOCK_TYPES = [
   { icon: 'icon-header-one', style: 'header-two' },
   { icon: 'icon-header-two', style: 'header-three' },
-  { icon: 'icon-ordered-list', style: 'ordered-list-item' },
-  { icon: 'icon-unordered-list', style: 'unordered-list-item' },
+  // { icon: 'icon-ordered-list', style: 'ordered-list-item' },
+  // { icon: 'icon-unordered-list', style: 'unordered-list-item' },
   { icon: 'icon-quote', style: 'blockquote' },
   { icon: 'icon-float', style: 'float-text' }
 ];

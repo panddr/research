@@ -1,26 +1,14 @@
 @import "mixins";
 
 .image-gallery {
-  background: $color-main;
   position: relative;
   overflow: hidden;
-  color: white;
   padding-top: $grid;
-
-  @include respond-to(small) {
-    background: transparent;
-    color: $color-main;
-    padding-top: 0;
-  }
 
   > .image-count {
     font-size: 16px;
     margin-left: $grid;
     padding-bottom: $grid;
-
-    @include respond-to(medium) {
-      margin-left: 20%;
-    }
 
     @include respond-to(large) {
       margin-left: 25%;
@@ -34,7 +22,6 @@
   > ul {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
 
     position: absolute;
     top: $grid*3; left: 0;
@@ -46,14 +33,7 @@
     list-style-image: none;
 
     @include respond-to(small) {
-      align-items: flex-start;
-
       margin-left: $grid;
-      background: transparent;
-    }
-
-    @include respond-to(medium) {
-      margin-left: 20%;
     }
 
     @include respond-to(large) {
@@ -88,19 +68,28 @@
 
       &.portrait {
         @include respond-to(small) {
-          max-width: $grid-col-fixed*2;
+          max-width: $grid-col-fixed*1.5;
         }
 
         @include respond-to(medium) {
-          max-width: $grid-col-fixed*2.5;
+          max-width: $grid-col-fixed*2;
         }
 
         @include respond-to(large) {
-          max-width: $grid-col-fixed*3;
+          max-width: $grid-col-fixed*2.5;
         }
 
         @include respond-to(xlarge) {
-          max-width: $grid-col-fixed*4;
+          max-width: $grid-col-fixed*3.5;
+        }
+
+        > img {
+          width: 40%;
+          margin: auto;
+
+          @include respond-to(small) {
+            width: 100%;
+          }
         }
       }
 
@@ -118,7 +107,9 @@
 
 .editor-image-gallery {
   position: relative;
-  overflow: hidden;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: $grid;
 
   > ul {
     display: flex;
@@ -129,16 +120,16 @@
     list-style: none;
     list-style-image: none;
 
-    @include respond-to(medium) {
-      margin-left: 20%;
+    @include respond-to(small) {
+      margin-left: $grid;
     }
 
     @include respond-to(large) {
-      margin-left: 35%;
+      margin-left: 25%;
     }
 
     @include respond-to(xlarge) {
-      margin-left: 40%;
+      margin-left: $grid-col-fixed*2;
     }
 
     > li {
@@ -152,22 +143,12 @@
 
         @include respond-to(medium) {
           width: 100%;
-          max-width: $size-medium;
+          max-width: $grid-col-fixed*5;
         }
       }
 
       &.portrait {
-        > img,
-        > .align-options,
-        > .caption {
-          @include respond-to(small) {
-            padding-right: $grid*6;
-          }
-
-          @include respond-to(medium) {
-            padding-right: $grid*18;
-          }
-        }
+        max-width: $grid-col-fixed*2!important;
       }
 
       > .align-options {
@@ -178,14 +159,6 @@
       > .caption {
         display: block;
         width: 100%;
-
-        @include respond-to(small) {
-          padding-right: $grid*2;
-        }
-
-        @include respond-to(medium) {
-          padding-right: $grid*6;
-        }
       }
     }
   }

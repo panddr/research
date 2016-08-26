@@ -19,13 +19,12 @@
     }
 
     @include respond-to(medium) {
-      margin-left: 20%;
       max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-left: 25%;
-      margin-right: 12.5%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
@@ -43,8 +42,8 @@
     }
 
     @include respond-to(large) {
-      margin-left: 25%;
-      margin-right: 12.5%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
@@ -55,16 +54,14 @@
       font-size: 16px;
 
       @include respond-to(small) {
-        width: 75%;
-      }
-
-      @include respond-to(medium) {
-        max-width: $grid-col-fixed*3;
+        margin-left: $grid*2;
+        float: right;
+        width: $grid-col-fixed;
       }
 
       @include respond-to(large) {
         float: left;
-        width: 14.5%;
+        width: 15.5%;
         margin-left: 0;
         margin-right: 0;
         padding-left: $grid;
@@ -82,13 +79,12 @@
     margin-right: $grid;
 
     @include respond-to(medium) {
-      margin-left: 20%;
       max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-left: 25%;
-      margin-right: 12.5%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
@@ -101,13 +97,12 @@
     margin-right: $grid;
 
     @include respond-to(medium) {
-      margin-left: 20%;
       max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-left: 25%;
-      margin-right: 12.5%;
+      margin-left: $grid-col-percentage*2;
+      margin-right: $grid-col-percentage;
     }
 
     @include respond-to(xlarge) {
@@ -119,19 +114,21 @@
   > div > ul {
     margin-left: $grid;
     margin-right: $grid;
+    padding-left: $grid*2;
 
     @include respond-to(medium) {
-      margin-left: 20%;
       max-width: $grid-col-fixed*5;
+      padding-left: $grid-col-percentage/2;
     }
 
     @include respond-to(large) {
-      margin-right: 10%;
-      margin-left: 35%;
+      margin-right: $grid-col-percentage;
+      margin-left: $grid-col-percentage*2;
     }
 
     @include respond-to(xlarge) {
       margin-left: $grid-col-fixed*2;
+      padding-left: $grid-col-fixed/2;
     }
   }
 
@@ -150,13 +147,12 @@
     }
 
     @include respond-to(medium) {
-      margin-left: 20%;
       max-width: $grid-col-fixed*5;
     }
 
     @include respond-to(large) {
-      margin-right: 10%;
-      margin-left: 35%;
+      margin-right: $grid-col-percentage;
+      margin-left: $grid-col-percentage*2;
     }
 
     @include respond-to(xlarge) {
@@ -165,22 +161,21 @@
 
     &.float {
       padding-left: $grid;
+      width: $grid-col-fixed;
 
       @include respond-to(small) {
-        margin-bottom: $grid*2;
-        margin-right: $grid*2;
-        width: 40%;
-        max-width: 250px;
+        float: right;
+        margin-bottom: $grid;
+        margin-right: $grid;
       }
 
       @include respond-to(medium) {
         margin-left: 0;
-        max-width: $grid-col-fixed*3;
       }
 
       @include respond-to(large) {
         float: left;
-        width: 14.5%;
+        width: 15.5%;
       }
 
       @include respond-to(xlarge) {
@@ -188,12 +183,7 @@
         width: $grid-col-fixed;
       }
 
-      > img {
-        // width: 25%;
-      }
-
       > figcaption {
-        width: 75%;
         margin-left: 0;
       }
     }
