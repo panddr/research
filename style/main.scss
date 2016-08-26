@@ -1,0 +1,163 @@
+@import "mixins";
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+
+body {
+  font-family: $font-family-basic;
+  text-rendering: optimizeLegibility;
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  font-size: 20px;
+  margin: 0; padding: 0;
+  min-width: 320px;
+
+  &.hidden {
+    overflow: hidden;
+  }
+
+  h1 {
+    @include header-font-size(1.4em,2em,2.6em,3em);
+    line-height: 1;
+  }
+
+  h2 {
+    @include header-font-size(1.2em,1.4em,2em,2.4em);
+    line-height: 1;
+  }
+
+  h3 {
+    @include header-font-size(1.1em,1.3em,1.6em,1.8em);
+  }
+
+  h4 {
+    @include header-font-size(1em,1.1em,1.2em,1.2em);
+  }
+
+  p {
+    line-height: 1.2;
+  }
+
+  blockquote {
+    @include header-font-size(1.1em,1.3em,1.6em,1.8em);
+    margin-bottom: $grid;
+    margin-left: $grid;
+    margin-right: $grid;
+    padding-left: $grid;
+
+    @include respond-to(medium) {
+      margin-bottom: $grid*2;
+      margin-top: $grid*2;
+      margin-left: 20%;
+      padding-left: $grid*2;
+      max-width: $size-medium;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2.5;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #005CFF;
+}
+
+input, textarea {
+  outline: none;
+  border-radius: 0;
+  background: white;
+  border: 0;
+  border: 1px solid $color-main;
+  resize: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding: $grid/5 $grid/4;
+  margin: 0;
+
+  &:focus::-webkit-input-placeholder {
+    color: $color-main;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    background: white;
+  }
+}
+
+input[type=submit],
+.button,
+button {
+  background: white;
+  outline: none;
+  box-shadow: none;
+  transition: background .3s $base-transition-style, color .3s $base-transition-style;
+  padding: $grid/5 $grid/4;
+  cursor: pointer;
+  color: $color-main;
+  -webkit-appearance: none;
+  border: 1px solid $color-main;
+  text-transform: uppercase!important;
+
+  &:hover {
+    background: $color-main;
+    color: white;
+    text-decoration: initial;
+  }
+}
+
+.actions {
+  display: inline-block;
+
+  > .button-edit {
+    margin-right: $grid/4;
+  }
+
+  > .confirm-deleting {
+    display: inline-block;
+
+    > span {
+      margin-right: $grid/4;
+    }
+  }
+}
+
+.research-logo {
+  display: inline-block;
+  margin-bottom: $grid*2;
+  margin-left: $grid;
+  margin-top: $grid;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.cancel-button {
+  border: 0;
+  position: relative;
+  top: -30px;
+  left: 130px;
+}
+
+ul,
+ol {
+  li {
+    margin-bottom: $grid/2;
+  }
+}

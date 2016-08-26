@@ -1,0 +1,51 @@
+@import "mixins";
+
+.portfolio-switcher {
+  align-items: stretch;
+  display: flex;
+
+  text-transform: uppercase;
+  border: 1px solid $color-main;
+  margin-bottom: $grid;
+  max-width: 500px;
+
+  &.portfolio-switcher-categories {
+    max-width: 100%;
+  }
+
+  > label {
+    align-items: stretch;
+    display: flex;
+
+    border-right: 1px solid $color-main;
+    width: 50%;
+    text-align: center;
+
+    &:last-child {
+      border: 0;
+    }
+
+    > input {
+      display: none;
+    }
+
+    > span {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      flex: 1;
+
+      padding: $grid/4 $grid/2;
+
+      transition: background $transition-time $base-transition-style, color $transition-time $base-transition-style;
+
+      cursor: pointer;
+      text-align: center;
+    }
+
+    > input:checked + span {
+      background: $color-main;
+      color: white;
+    }
+  }
+}

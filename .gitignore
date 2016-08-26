@@ -1,0 +1,16 @@
+node_modules
+rethinkdb_data
+dist
+build
+config/local.json
+.vagrant
+
+ansible/playbook.retry
+
+npm-debug.log
+
+*.jpg
+
+public/images/
+
+.env

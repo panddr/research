@@ -1,0 +1,552 @@
+@import "mixins";
+
+//мои стили
+.editor-title {
+  width: 100%;
+  border: 0;
+  padding: 0;
+}
+
+figcaption,
+.caption {
+  font-size: 16px;
+  margin-top: $grid/2;
+  margin-left: $grid;
+  margin-right: $grid;
+
+  @include respond-to(small) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.button-actions {
+  .button {
+    margin-right: $grid/4;
+    font-size: 16px;
+  }
+}
+
+.editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: $grid*2;
+  width: 100%;
+
+  figure {
+    margin: 0;
+  }
+
+  .placeholder {
+    display: block;
+    height: 50px;
+    background: $color-main;
+  }
+
+  .paragraph,
+  .public-DraftEditorPlaceholder-root {
+    margin: 0;
+    margin-bottom: $grid;
+    margin-left: $grid;
+    margin-right: $grid;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $size-medium;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: 40%;
+    }
+  }
+
+  .float-text {
+    position: relative;
+    z-index: 2;
+    float: right;
+    margin-left: $grid;
+    margin-bottom: $grid*2;
+    font-size: 16px;
+    margin-right: 30%;
+    width: 20%;
+
+    @include respond-to(small) {
+      float: left;
+      margin-bottom: $grid*2;
+      width: 40%;
+    }
+
+    @include respond-to(medium) {
+      margin-left: $grid;
+      width: 30%;
+      margin-right: $grid;
+      max-width: 250px;
+    }
+
+    @include respond-to(large) {
+      width: 20%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: 20%;
+    }
+  }
+
+  .public-DraftEditor-content {
+    > div > ol,
+    > div > ul {
+      margin-left: $grid;
+      margin-right: $grid;
+
+      @include respond-to(medium) {
+        margin-left: 20%;
+        max-width: $size-medium;
+      }
+
+      @include respond-to(large) {
+        margin-right: 10%;
+        margin-left: 35%;
+      }
+
+      @include respond-to(xlarge) {
+        margin-left: 40%;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    h2,
+    h3 {
+      margin-left: $grid;
+      margin-right: $grid;
+
+      @include respond-to(medium) {
+        margin-left: 20%;
+        max-width: $size-medium;
+      }
+
+      @include respond-to(large) {
+        margin-right: 10%;
+        margin-left: 35%;
+      }
+
+      @include respond-to(xlarge) {
+        margin-left: 40%;
+      }
+    }
+  }
+
+  > .button-save {
+    position: fixed;
+    z-index: 9999999;
+    top: $grid; right: $grid;
+  }
+
+  > h1 {
+    margin-left: $grid;
+    margin-right: $grid;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $size-medium;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: 40%;
+    }
+  }
+
+  .embed-component {
+    margin-bottom: $grid;
+    @include respond-to(small) {
+      margin-left: $grid;
+      margin-right: $grid;
+    }
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $size-medium;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: 40%;
+    }
+
+    > div {
+      display: flex;
+
+      textarea {
+        width: 100%;
+        margin-right: $grid/4;
+      }
+    }
+
+    .caption {
+      margin-top: $grid/2;
+      font-size: 16px;
+    }
+  }
+
+  .image {
+    position: relative;
+    margin-bottom: $grid;
+
+    > img {
+      display: block;
+
+      width: 100%;
+    }
+
+    .form {
+      margin-top: $grid/2;
+    }
+
+    textarea {
+      width: 100%;
+      font-size: 16px;
+    }
+
+    > .align-options {
+      display: flex;
+      justify-content: space-around;
+
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: $color-main;
+      opacity: .8;
+      font-size: 16px;
+
+      > a {
+        color: white;
+        text-decoration: none;
+        opacity: .5;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+
+    @include respond-to(small) {
+      margin-left: $grid;
+      margin-right: $grid;
+    }
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $size-medium;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: 40%;
+    }
+
+    &.float {
+      @include respond-to(small) {
+        float: left;
+        margin-bottom: $grid*2;
+        margin-right: $grid*2;
+        width: 40%;
+        max-width: 250px;
+      }
+
+      @include respond-to(medium) {
+        margin-left: $grid;
+        width: 30%;
+      }
+
+      @include respond-to(large) {
+        width: 20%;
+      }
+    }
+
+    &.full-width {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+
+      > .caption {
+        margin-left: $grid;
+        margin-right: $grid;
+
+        @include respond-to(medium) {
+          margin-left: 20%;
+        }
+
+        @include respond-to(large) {
+          margin-right: 10%;
+          margin-left: 35%;
+        }
+
+        @include respond-to(xlarge) {
+          margin-left: 40%;
+        }
+      }
+    }
+  }
+
+  iframe {
+    display: block;
+
+    width: 100%;
+  }
+}
+
+
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: absolute;
+  z-index: 9999;
+  cursor: default;
+
+  font-size: 16px;
+  transition: opacity .3s $base-transition-style, visibility .3s $base-transition-style;
+  margin: 0;
+  padding: 0 $grid/4;
+  background: $color-main;
+  visibility: hidden;
+  opacity: 0;
+
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
+    border-top: 5px solid $color-main;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+
+  &.toolbar-icons {
+    list-style: none;
+
+    > .toolbar-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #888;
+      transition: color .3s $base-transition-style;
+      cursor: pointer;
+      padding: $grid/2;
+      margin: 0;
+
+      &:hover,
+      &.active {
+        color: white;
+      }
+
+      &:hover i,
+      &.active i {
+        color: white;
+      }
+
+      i {
+        display: flex;
+
+        margin: 0;
+        padding: 0;
+        color: #888;
+
+        &.icon-bold {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  &.url-input {
+    height: 36px;
+
+    input,
+    button {
+      color: white;
+      background: transparent;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.add-button-toolbar {
+  display: flex;
+
+  background: white;
+  position: absolute;
+  top: 25px;
+  z-index: 999;
+  font-size: 21px;
+  left: $grid;
+
+  @include respond-to(medium) {
+    left: 20%;
+    margin-left: -$grid*2 - $grid/2;
+  }
+
+  @include respond-to(large) {
+    left: 35%;
+  }
+
+  @include respond-to(xlarge) {
+    left: 40%;
+  }
+
+  i {
+    display: flex;
+
+    transition: all .3s $base-transition-style;
+    color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  .add-button {
+    transition: all .3s $base-transition-style;
+    border-radius: 100px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    font-size: 26px;
+    margin-right: $grid/2;
+
+    &.open-button {
+      transform: rotate(45deg);
+    }
+  }
+
+  .buttons {
+    display: flex;
+
+    .icon-image:before {
+      padding-top: 3px;
+    }
+
+    i {
+      padding: 7px $grid/2 4px $grid/2;
+    }
+  }
+}
+
+.editor-image-actions {
+  display: flex;
+  align-items: center;
+
+  padding: $grid;
+  font-size: 16px;
+
+  span {
+    cursor: pointer;
+    margin-right: $grid;
+    color: #005cff;
+
+    &.active {
+      color: $color-main;
+    }
+  }
+
+  .button {
+    margin-right: $grid;
+  }
+}
+
+.images-editing {
+  list-style: none;
+  margin-left: $grid;
+  margin-right: $grid;
+  border: 1px solid $color-main;
+  margin-bottom: $grid*2;
+  font-size: 16px;
+
+  .placeholder {
+    height: 50px;
+    background: $color-main;
+  }
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+
+    position: relative;
+    border-bottom: 1px solid $color-main;
+    padding: $grid/2;
+    width: 100%;
+
+    &:last-child {
+      border: 0;
+    }
+
+    .image-editing-info {
+      width: 70%;
+
+      button {
+        position: absolute;
+        right: $grid/2; top: $grid/2;
+      }
+
+      textarea {
+        width: 100%;
+      }
+
+      .align-options {
+        display: flex;
+
+        a {
+          margin-right: $grid;
+
+          &.active {
+            color: $color-main;
+          }
+        }
+      }
+    }
+
+    .image-editing {
+      width: 60px;
+      margin-right: $grid/2;
+    }
+  }
+}

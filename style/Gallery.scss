@@ -1,0 +1,192 @@
+@import "mixins";
+
+.image-gallery {
+  background: $color-main;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  padding-top: $grid;
+
+  @include respond-to(small) {
+    background: transparent;
+    color: $color-main;
+    padding-top: 0;
+  }
+
+  > .image-count {
+    font-size: 16px;
+    margin-left: $grid;
+    padding-bottom: $grid;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+    }
+
+    @include respond-to(large) {
+      margin-left: 25%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+  }
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    position: absolute;
+    top: $grid*3; left: 0;
+
+    transition: left .3s $base-transition-style;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    list-style-image: none;
+
+    @include respond-to(small) {
+      align-items: flex-start;
+
+      margin-left: $grid;
+      background: transparent;
+    }
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+    }
+
+    @include respond-to(large) {
+      margin-left: 25%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+
+    > li {
+      cursor: pointer;
+      margin: 0;
+
+      @include respond-to(small) {
+        max-width: $grid-col-fixed*3;
+        padding-right: $grid-col-fixed/2;
+      }
+
+      @include respond-to(medium) {
+        max-width: $grid-col-fixed*4;
+      }
+
+      @include respond-to(large) {
+        max-width: $grid-col-fixed*5;
+      }
+
+      @include respond-to(xlarge) {
+        max-width: $grid-col-fixed*6;
+        padding-right: $grid-col-fixed;
+      }
+
+      &.portrait {
+        @include respond-to(small) {
+          max-width: $grid-col-fixed*2;
+        }
+
+        @include respond-to(medium) {
+          max-width: $grid-col-fixed*2.5;
+        }
+
+        @include respond-to(large) {
+          max-width: $grid-col-fixed*3;
+        }
+
+        @include respond-to(xlarge) {
+          max-width: $grid-col-fixed*4;
+        }
+      }
+
+      > img {
+        display: block;
+        width: 100%;
+      }
+
+      > figcaption {
+        margin-bottom: $grid/2;
+      }
+    }
+  }
+}
+
+.editor-image-gallery {
+  position: relative;
+  overflow: hidden;
+
+  > ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    list-style-image: none;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+    }
+
+    @include respond-to(large) {
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: 40%;
+    }
+
+    > li {
+      display: none;
+
+      margin-left: 0!important;
+      margin-right: 0!important;
+
+      &:first-child {
+        display: block;
+
+        @include respond-to(medium) {
+          width: 100%;
+          max-width: $size-medium;
+        }
+      }
+
+      &.portrait {
+        > img,
+        > .align-options,
+        > .caption {
+          @include respond-to(small) {
+            padding-right: $grid*6;
+          }
+
+          @include respond-to(medium) {
+            padding-right: $grid*18;
+          }
+        }
+      }
+
+      > .align-options {
+        display: none!important;
+      }
+
+      > img,
+      > .caption {
+        display: block;
+        width: 100%;
+
+        @include respond-to(small) {
+          padding-right: $grid*2;
+        }
+
+        @include respond-to(medium) {
+          padding-right: $grid*6;
+        }
+      }
+    }
+  }
+}

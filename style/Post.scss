@@ -1,0 +1,212 @@
+@import "mixins";
+
+.post-body {
+  .actions {
+    position: fixed;
+    top: $grid; right: $grid;
+    z-index: 9;
+  }
+
+  figure {
+    margin: 0;
+    margin-bottom: $grid;
+  }
+
+  .embed {
+    @include respond-to(small) {
+      margin-left: $grid;
+      margin-right: $grid;
+    }
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-left: 25%;
+      margin-right: 12.5%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-left: $grid;
+    margin-right: $grid;
+
+    @include respond-to(medium) {
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-left: 25%;
+      margin-right: 12.5%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+
+    &.float-text {
+      font-size: 16px;
+
+      @include respond-to(small) {
+        width: 75%;
+      }
+
+      @include respond-to(medium) {
+        max-width: $grid-col-fixed*3;
+      }
+
+      @include respond-to(large) {
+        float: left;
+        width: 14.5%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: $grid;
+      }
+
+      @include respond-to(xlarge) {
+        width: $grid-col-fixed;
+      }
+    }
+  }
+
+  h2,
+  h3 {
+    margin-left: $grid;
+    margin-right: $grid;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-left: 25%;
+      margin-right: 12.5%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+  }
+
+  .title {
+    margin-left: $grid;
+    margin-right: $grid;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-left: 25%;
+      margin-right: 12.5%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+  }
+
+  > div > ol,
+  > div > ul {
+    margin-left: $grid;
+    margin-right: $grid;
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+  }
+
+  iframe {
+    display: block;
+
+    width: 100%;
+  }
+
+  figure.image {
+    margin-bottom: $grid;
+
+    @include respond-to(small) {
+      margin-left: $grid;
+      margin-right: $grid;
+    }
+
+    @include respond-to(medium) {
+      margin-left: 20%;
+      max-width: $grid-col-fixed*5;
+    }
+
+    @include respond-to(large) {
+      margin-right: 10%;
+      margin-left: 35%;
+    }
+
+    @include respond-to(xlarge) {
+      margin-left: $grid-col-fixed*2;
+    }
+
+    &.float {
+      padding-left: $grid;
+
+      @include respond-to(small) {
+        margin-bottom: $grid*2;
+        margin-right: $grid*2;
+        width: 40%;
+        max-width: 250px;
+      }
+
+      @include respond-to(medium) {
+        margin-left: 0;
+        max-width: $grid-col-fixed*3;
+      }
+
+      @include respond-to(large) {
+        float: left;
+        width: 14.5%;
+      }
+
+      @include respond-to(xlarge) {
+        padding-left: $grid;
+        width: $grid-col-fixed;
+      }
+
+      > img {
+        // width: 25%;
+      }
+
+      > figcaption {
+        width: 75%;
+        margin-left: 0;
+      }
+    }
+
+    &.full-width {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+
+      > figcaption {
+        margin-left: $grid;
+        margin-right: $grid;
+      }
+    }
+  }
+}
