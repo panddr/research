@@ -30,6 +30,45 @@
     @include respond-to(xlarge) {
       margin-left: $grid-col-fixed*2;
     }
+
+    &.full-width {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+
+      figcaption {
+        margin-left: $grid;
+      }
+    }
+
+    &.float {
+      padding-left: $grid;
+      width: $grid-col-fixed;
+
+      @include respond-to(small) {
+        float: right;
+        margin-bottom: $grid;
+        margin-right: $grid;
+      }
+
+      @include respond-to(medium) {
+        margin-left: 0;
+      }
+
+      @include respond-to(large) {
+        float: left;
+        width: 15.5%;
+      }
+
+      @include respond-to(xlarge) {
+        padding-left: $grid;
+        width: $grid-col-fixed;
+      }
+
+      > figcaption {
+        margin-left: 0;
+      }
+    }
   }
 
   p {

@@ -59,7 +59,13 @@
       }
 
       figcaption {
+        display: none;
+
         margin-bottom: $grid/2;
+
+        @include respond-to(small) {
+          display: block;
+        }
       }
     }
   }

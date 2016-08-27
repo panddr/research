@@ -39,20 +39,18 @@ export default class NasedkinList extends Component {
   render() {
     const { events, actions } = this.props;
     const nasedkin = events;
-    let editable = true;
 
     return (
       <section className='portfolio-project-list'>
         <header className='portfolio-header'>
           <div className='portfolio-links'>
-            <h1><Link to='/nasedkin' activeClassName='active' onClick={::this.filterByCategoryAll.bind(this, nasedkin)}>Владимир Наседкин</Link></h1>
-            <h1><Link to='/badanina' activeClassName='active'>Татьяна Баданина</Link></h1>
+            <h1><Link to='/nasedkin' activeClassName='active' onClick={::this.filterByCategoryAll.bind(this, nasedkin)}>Искусство и исследования</Link></h1>
           </div>
         </header>
         <div>
           <ul className="portfolio-list">
             {this.state.projects.slice(0,this.props.length).map((event, key) =>
-              <EventItem key={key} row={key} id={event.id} event={event} editable={editable} uploadImage={this.props.uploadImage} {...actions} />
+              <EventItem key={key} row={key} id={event.id} event={event} uploadImage={this.props.uploadImage} {...actions} />
             )}
           </ul>
         </div>

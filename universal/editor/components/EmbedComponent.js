@@ -7,7 +7,8 @@ class EmbedComponent extends Component {
     super(props);
 
     this.state = {
-      editing: false
+      editing: false,
+      align: 'center'
     };
 
     this._startEdit = () => {
@@ -91,10 +92,20 @@ class EmbedComponent extends Component {
     return { __html: caption };
   }
 
+  alignEmbed(align, e) {
+    e.preventDefault();
+    var entityKey = this.props.block.getEntityAt(0);
+    Entity.mergeData(entityKey, {align: align});
+    this.props.blockProps.onStartEdit(this.props.block.getKey());
+    this.setState({ align: align });
+    this.props.blockProps.onFinishEdit(this.props.block.getKey());
+  }
+
   render() {
     const {block} = this.props;
     const content = Entity.get(this.props.block.getEntityAt(0)).data.content;
     const embedCaption = (<div dangerouslySetInnerHTML={this.rawCaptionMarkup(Entity.get(this.props.block.getEntityAt(0)).data.caption)} />);
+    const embedAlign = Entity.get(this.props.block.getEntityAt(0)).data.align || '';
 
     let captionElement;
 
@@ -133,10 +144,17 @@ class EmbedComponent extends Component {
     }
 
     return (
-      <div className="embed-component">
+      <div className={"embed-component " + embedAlign}>
         { content
           ?
-          <div className="embed" dangerouslySetInnerHTML={this.rawContentMarkup(this.state.content)} />
+          <div>
+            <div className="embed" dangerouslySetInnerHTML={this.rawContentMarkup(this.state.content)} />
+            <div className="align-options">
+              <a href="#" className={embedAlign == 'center' ? 'active' : null} onClick={::this.alignEmbed.bind(this, 'center')}>center</a>
+              <a href="#" className={embedAlign == 'full-width' ? 'active' : null} onClick={::this.alignEmbed.bind(this, 'full-width')}>full-width</a>
+              <a href="#" className={embedAlign == 'float' ? 'active' : null} onClick={::this.alignEmbed.bind(this, 'float')}>float</a>
+            </div>
+          </div>
           :
           <div>
             <TextareaAutosize

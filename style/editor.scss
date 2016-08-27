@@ -163,6 +163,7 @@ figcaption,
   }
 
   .embed-component {
+    position: relative;
     margin-bottom: $grid;
 
     @include respond-to(small) {
@@ -183,12 +184,72 @@ figcaption,
       margin-left: $grid-col-fixed*2;
     }
 
+    &.full-width {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
+    }
+
+    &.float {
+      padding-left: $grid;
+      width: $grid-col-fixed;
+
+      @include respond-to(small) {
+        float: right;
+        margin-bottom: $grid;
+        margin-right: $grid;
+      }
+
+      @include respond-to(medium) {
+        margin-left: 0;
+      }
+
+      @include respond-to(large) {
+        float: left;
+        width: 15.5%;
+      }
+
+      @include respond-to(xlarge) {
+        padding-left: $grid;
+        width: $grid-col-fixed;
+      }
+
+      > figcaption {
+        margin-left: 0;
+      }
+    }
+
     > div {
       display: flex;
 
       textarea {
         width: 100%;
         margin-right: $grid/4;
+      }
+    }
+
+    .embed {
+      width: 100%;
+    }
+
+    .align-options {
+      display: flex;
+      justify-content: space-around;
+
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      background: $color-main;
+      opacity: .8;
+      font-size: 16px;
+
+      > a {
+        color: white;
+        text-decoration: none;
+        opacity: .5;
+
+        &.active {
+          opacity: 1;
+        }
       }
     }
 

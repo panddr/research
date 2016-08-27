@@ -17,11 +17,12 @@ export const blockRenderersOptions = {
         return '<figure class="image image-zoom ' + imgAlign + '">' + '<img src=' + imgContent + '>' + imgCaption + '</figure>';
       } else if (type === 'EMBED') {
         const embed = Entity.get(block.getEntityAt(0)).data.content;
+        let embedAlign = Entity.get(block.getEntityAt(0)).data.align;
         let embedCaption = '';
         if (Entity.get(block.getEntityAt(0)).data.caption) {
           embedCaption = '<figcaption>' + Entity.get(block.getEntityAt(0)).data.caption + '</figcaption>';
         }
-        return '<figure class="embed">' + embed  + embedCaption + '</figure>';
+        return '<figure class="embed ' + embedAlign + '">' + embed + embedCaption + '</figure>';
       } else if (type === 'IMAGES') {
         const files = Entity.get(block.getEntityAt(0)).data.files;
         const grid = Entity.get(block.getEntityAt(0)).data.grid;
