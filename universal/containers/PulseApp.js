@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Home from '../components/HomePage';
+import Header from '../components/Header';
 import NasedkinList from '../components/NasedkinList';
 import AsyncBar from '../components/AsyncBar';
 import EventInput from '../components/EventInput';
@@ -30,7 +31,8 @@ class PulseApp extends Component {
     };
 
     return (
-      <div className="portfolio-container">
+      <div className="research-container">
+        <Header />
         <AsyncBar isWorking={this.props.isWorking} error={this.props.error} />
         {this.props.home}
         {this.props.nasedkin}

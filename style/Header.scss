@@ -1,29 +1,29 @@
 @import "mixins";
 
-.portfolio-header {
-  position: absolute;
-  top: 0; left: 0;
+.research-header {
+  display: flex;
+  justify-content: space-between;
 
-  background: white;
-  border-bottom: 1px solid $color-main;
+  padding: $grid;
   margin-bottom: $grid*2;
-  padding: $grid/2 $grid;
-  width: 100%;
 
-  > .portfolio-links {
+  @include respond-to(medium) {
+    margin-bottom: $grid*4;
+  }
+
+  a {
+    border-bottom: 1px solid $color-main;
+  }
+
+  > .wrapper {
     display: flex;
 
-    h1 {
-      margin-right: $grid;
-      width: 50%;
+    a {
+      margin-left: $grid/2;
     }
 
-    a {
-      text-decoration: underline;
-
-      &.active {
-        text-decoration: none;
-      }
+    .social-links {
+      margin-left: $grid*2;
     }
   }
 }

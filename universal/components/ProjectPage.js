@@ -249,7 +249,7 @@ class ProjectPage extends Component {
       );
     } else {
       confirmDeleting = (
-        <button onClick={ ::this.handleConfirm }>X</button>
+        <button className="remove-button" onClick={ ::this.handleConfirm }>+</button>
       );
     }
 
@@ -273,7 +273,6 @@ class ProjectPage extends Component {
         null;
       element = (
         <div className="post-body">
-          <Link className="research-logo" to='/'>Исследования и искусство</Link>
           <h1 className="title">{ project.title }</h1>
           {actions}
           <div dangerouslySetInnerHTML={this.rawMarkup()} />

@@ -74,7 +74,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #005CFF;
+  color: $color-main;
 }
 
 input, textarea {
@@ -136,18 +136,6 @@ button {
   }
 }
 
-.research-logo {
-  display: inline-block;
-  margin-bottom: $grid*2;
-  margin-left: $grid;
-  margin-top: $grid;
-
-  img {
-    display: block;
-    width: 100%;
-  }
-}
-
 .cancel-button {
   border: 0;
   position: relative;
@@ -159,5 +147,23 @@ ul,
 ol {
   li {
     margin-bottom: $grid/2;
+  }
+}
+
+.research-homepage {
+  margin-left: $grid;
+  margin-right: $grid;
+
+  @include respond-to(medium) {
+    max-width: $grid-col-fixed*5;
+  }
+
+  @include respond-to(large) {
+    margin-left: $grid-col-percentage*2;
+    margin-right: $grid-col-percentage;
+  }
+
+  @include respond-to(xlarge) {
+    margin-left: $grid-col-fixed*2;
   }
 }

@@ -8,14 +8,19 @@ if (process.env.BROWSER) {
 export default class Header extends Component {
   render() {
     return (
-      <div>
-        <header className='portfolio-header'>
-          <div className='portfolio-links'>
-            <h1><IndexLink to='/' activeClassName='active'>Владимир Наседкин</IndexLink></h1>
-            <h1><Link to='/badanina' activeClassName='active'>Татьяна Бададина</Link></h1>
+      <header className='research-header'>
+        <IndexLink to='/' activeClassName='active'>Искусство и исследования</IndexLink>
+        <div className='wrapper'>
+          <div className='language-links'>
+            <IndexLink to='/' activeClassName='active'>РУ</IndexLink>
+            <Link to='/en' activeClassName='active'>EN</Link>
           </div>
-        </header>
-      </div>
+          <div className='social-links'>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+          </div>
+        </div>
+      </header>
     );
   }
 }

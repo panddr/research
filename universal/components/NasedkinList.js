@@ -41,19 +41,15 @@ export default class NasedkinList extends Component {
     const nasedkin = events;
 
     return (
-      <section className='portfolio-project-list'>
-        <header className='portfolio-header'>
-          <div className='portfolio-links'>
-            <h1><Link to='/nasedkin' activeClassName='active' onClick={::this.filterByCategoryAll.bind(this, nasedkin)}>Искусство и исследования</Link></h1>
-          </div>
-        </header>
-        <div>
-          <ul className="portfolio-list">
-            {this.state.projects.slice(0,this.props.length).map((event, key) =>
-              <EventItem key={key} row={key} id={event.id} event={event} uploadImage={this.props.uploadImage} {...actions} />
-            )}
-          </ul>
-        </div>
+      <section className='research-homepage'>
+        <h1>
+          Исследовательская платформа Department of Research Arts реализует междисциплинарные проекты на стыке современного искусства и современных социальных и гуманитарных наук.
+        </h1>
+        <ul className="research-posts-list">
+          {this.state.projects.slice(0,this.props.length).map((event, key) =>
+            <EventItem key={key} row={key} id={event.id} event={event} uploadImage={this.props.uploadImage} {...actions} />
+          )}
+        </ul>
       </section>
     );
   }

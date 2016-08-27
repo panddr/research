@@ -27,6 +27,7 @@ figcaption,
 }
 
 .editor {
+  background: white;
   position: absolute;
   top: 0;
   right: 0;
@@ -34,6 +35,10 @@ figcaption,
   left: 0;
   padding-top: $grid*2;
   width: 100%;
+
+  a {
+    border-bottom: 1px solid $color-main;
+  }
 
   figure {
     margin: 0;

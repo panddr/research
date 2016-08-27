@@ -1,10 +1,27 @@
 @import "mixins";
 
 .post-body {
+  a {
+    border-bottom: 1px solid $color-main;
+  }
+
   .actions {
     position: fixed;
-    top: $grid; right: $grid;
+    top: $grid*3; right: $grid/2;
     z-index: 9;
+
+    button {
+      display: block;
+
+      background: transparent;
+      border: 0;
+      color: $color-main;
+    }
+
+    .remove-button {
+      font-size: 24px;
+      transform: rotate(45deg);
+    }
   }
 
   figure {
