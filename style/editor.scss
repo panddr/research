@@ -50,6 +50,7 @@ figcaption,
     background: $color-main;
   }
 
+  p,
   .paragraph,
   .public-DraftEditorPlaceholder-root {
     margin: 0;
@@ -143,10 +144,87 @@ figcaption,
     }
   }
 
-  > .button-save {
+  > .editor-actions {
+    display: flex;
+
     position: fixed;
-    z-index: 9999999;
+    z-index: 11;
     top: $grid; right: $grid;
+    font-size: 16px;
+
+    > .button {
+      margin-left: $grid;
+    }
+  }
+
+  > .advanced-settings {
+    display: flex;
+
+    position: fixed;
+    left: 0; top: 0;
+
+    background: white;
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 111;
+
+    > header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: absolute;
+      left: $grid; top: $grid; right: $grid;
+    }
+
+    > div {
+      margin-left: $grid;
+      margin-right: $grid;
+      padding-top: $grid*4;
+      width: 100%;
+
+      @include respond-to(medium) {
+        max-width: $grid-col-fixed*5;
+      }
+
+      @include respond-to(large) {
+        margin-left: $grid-col-percentage*2;
+        margin-right: $grid-col-percentage;
+      }
+
+      @include respond-to(xlarge) {
+        margin-left: $grid-col-fixed*2;
+      }
+
+      > section {
+        margin-bottom: $grid;
+
+        > span {
+          display: block;
+
+          margin-bottom: $grid/4;
+        }
+
+        > textarea {
+          width: 100%;
+        }
+
+        > label input {
+          margin-right: $grid/4;
+        }
+
+        > .cover-image {
+          margin-bottom: $grid/2;
+
+          > img {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 
   > h1 {

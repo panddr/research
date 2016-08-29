@@ -1,7 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
-import EventInput from './EventInput';
-import EventItem from './EventItem';
 import DocumentMeta from 'react-document-meta';
 import RichEditor from '../editor';
 
@@ -257,6 +255,9 @@ class ProjectPage extends Component {
       element = (
         <div>
           <RichEditor title={project.title}
+                      description={project.description}
+                      isFeatured={project.isFeatured}
+                      coverImage={project.coverImage}
                       id={id}
                       html={project.html}
                       RawDraftContentState={project.RawDraftContentState}

@@ -30,7 +30,7 @@ export function liveUpdates(io) {
 export function getEvents() {
   return r
     .table('pulses')
-    .orderBy(r.desc('updated')).run();
+    .orderBy(r.desc('created')).run();
 }
 
 export function addEvent(event) {

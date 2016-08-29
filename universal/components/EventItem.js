@@ -30,11 +30,13 @@ export default class EventItem extends Component {
     const date = moment(event.created).subtract(10, 'days').calendar();
 
     return (
-      <li className={event.largeCover ? 'portfolio-project-item large' : 'portfolio-project-item'}>
+      <li className="research-post-item">
         <article>
           <Link to={link}>
             <span className="date">{date}</span>
-            <h2><span dangerouslySetInnerHTML={this.rawMarkupTitle()} /></h2>
+            <h2 className="title"><span dangerouslySetInnerHTML={this.rawMarkupTitle()} /></h2>
+            { event.coverImage ? <div className="image"><img src={event.coverImage}/></div> : null}
+            <p>{event.description}</p>
           </Link>
         </article>
       </li>

@@ -33,6 +33,9 @@ import request from 'superagent';
 import {findLinkEntities, Link} from '../decorators/link';
 
 const blockRenderMap = Immutable.Map({
+  'paragraph': {
+    element: 'p'
+  },
   'float-text': {
     element: 'div'
   }
@@ -54,9 +57,13 @@ class RichEditor extends Component {
     this.state = {
       editorState: EditorState.createEmpty(decorator),
       title: this.props.title || '',
+      description: this.props.description || '',
+      coverImage: this.props.coverImage || '',
+      isFeatured: this.props.isFeatured || false,
       id: this.props.id || '',
       loadingImages: false,
-      liveCaptionEdits: Map()
+      liveCaptionEdits: Map(),
+      advancedSettingsPopupIsOpened: false
     };
 
     this.onChange = (editorState) => { this.setState({ editorState }); }
@@ -73,6 +80,7 @@ class RichEditor extends Component {
     this.handleFileInput = (e) => this._handleFileInput(e);
     this.handleMultipleFileInput = (e) => this._handleMultipleFileInput(e);
     this.handleTitleInput = (e) => this._handleTitleInput(e);
+    this.handleDescriptionInput = (e) => this._handleDescriptionInput(e);
     this.handleUploadImage = () => this._handleUploadImage();
     this.handleUploadImageArray = () => this._handleUploadImageArray();
     this.handleAddEmbed = () => this._handleAddEmbed();
@@ -261,10 +269,37 @@ class RichEditor extends Component {
     });
   }
 
+  insertCoverImage(file) {
+    const req = request
+      .post('/api/0/images')
+    req.attach('file', file);
+
+    req.end((err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const obj = JSON.parse(res.text);
+        const key = obj[0].key;
+        this.setState({ coverImage: 'https://s3-eu-west-1.amazonaws.com/projectsuploads/uploads/images/' + key });
+      }
+    });
+  }
+
+  handleImageCoverClick() {
+    this.refs.coverInput.click();
+    this.refs.coverInput.value = "";
+  }
+
   _handleFileInput(e) {
     const fileList = e.target.files;
     const file = fileList[0];
     this.insertImage(file);
+  }
+
+  handleImageCoverInput(e) {
+    const fileList = e.target.files;
+    const file = fileList[0];
+    this.insertCoverImage(file);
   }
 
   _handleMultipleFileInput(e) {
@@ -274,6 +309,10 @@ class RichEditor extends Component {
 
   _handleTitleInput(e) {
     this.setState({ title: e.target.value });
+  }
+
+  _handleDescriptionInput(e) {
+    this.setState({ description: e.target.value });
   }
 
   _handleUploadImage() {
@@ -295,6 +334,15 @@ class RichEditor extends Component {
     ));
   }
 
+  toggleAdvancedSettingsPopup(e) {
+    e.preventDefault();
+    this.setState({ advancedSettingsPopupIsOpened: !this.state.advancedSettingsPopupIsOpened });
+  }
+
+  handleFeaturedChange() {
+    this.setState({ isFeatured: !this.state.isFeatured });
+  }
+
   handleSubmit() {
     let contentState = this.state.editorState.getCurrentContent();
     let html = stateToHTML(contentState, blockRenderersOptions);
@@ -307,10 +355,22 @@ class RichEditor extends Component {
     //   html = stateToHTML(contentState, blockRenderersOptions);
     // }
 
-    if (this.state.id) {
+    if (this.state.id && this.state.title) {
       request
         .post('/api/0/events' + '/' + this.state.id)
-        .send({title: this.state.title, html: html, id: this.state.id, RawDraftContentState: RawDraftContentState})
+        .send({title: this.state.title, html: html, description: this.state.description, coverImage: this.state.coverImage, isFeatured: this.state.isFeatured, id: this.state.id, RawDraftContentState: RawDraftContentState})
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          if (err) {
+          } else {
+            const url = "/project/" + res.body.slug;
+            location.assign(url);
+          }
+        });
+    } else if (this.state.title) {
+      request
+        .post('/api/0/events')
+        .send({title: this.state.title, html: html, description: this.state.description, coverImage: this.state.coverImage, isFeatured: this.state.isFeatured, RawDraftContentState: convertToRaw(contentState)})
         .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) {
@@ -320,17 +380,7 @@ class RichEditor extends Component {
           }
         });
     } else {
-      request
-        .post('/api/0/events')
-        .send({title: this.state.title, html: html, RawDraftContentState: convertToRaw(contentState)})
-        .set('Accept', 'application/json')
-        .end((err, res) => {
-          if (err) {
-          } else {
-            const url = "/project/" + res.body.slug;
-            location.assign(url);
-          }
-        });
+      return;
     }
   }
 
@@ -338,7 +388,7 @@ class RichEditor extends Component {
     let contentState = this.state.editorState.getCurrentContent();
     let html = stateToHTML(contentState, blockRenderersOptions);
     let RawDraftContentState = convertToRaw(contentState);
-    console.log(RawDraftContentState);
+    console.log(this.state.coverImage);
 
 
     const { editorState, selectedBlock, selectionRange } = this.state;
@@ -353,7 +403,10 @@ class RichEditor extends Component {
             ref="title"
             onChange={this.handleTitleInput} />
         </h1>
-        <button type='submit' className='button button-save' onClick={::this.handleSubmit}>Save</button>
+        <div className="editor-actions">
+          <a href="#" onClick={::this.toggleAdvancedSettingsPopup}>...</a>
+          <button type='submit' className='button' onClick={::this.handleSubmit}>Save</button>
+        </div>
         <Editor
           blockRendererFn={this.blockRenderer}
           blockStyleFn={this.blockStyler}
@@ -398,6 +451,43 @@ class RichEditor extends Component {
         <input type="file" ref="multipleFileInput" style={{display: 'none'}} multiple
           onChange={this.handleMultipleFileInput} />
         {this.state.loadingImages ? <span className="async-spinner" /> : null}
+        {this.state.advancedSettingsPopupIsOpened
+          ?
+          <div className="advanced-settings">
+            <header>
+              <span>Advanced settings</span>
+              <a href="#" className='button' onClick={::this.toggleAdvancedSettingsPopup}>Save</a>
+            </header>
+            <div>
+              <section>
+                <label>
+                  <input
+                    type='checkbox'
+                    checked={this.state.isFeatured}
+                    value={this.state.isFeatured}
+                    onChange={::this.handleFeaturedChange} />
+                  Featured
+                </label>
+              </section>
+              <section>
+                <span>Post description</span>
+                <TextareaAutosize
+                  placeholder="Type post description"
+                  value={this.state.description}
+                  ref="description"
+                  onChange={this.handleDescriptionInput} />
+              </section>
+              <section>
+                <span>Cover image</span>
+                { this.state.coverImage ? <div className="cover-image"><img src={this.state.coverImage}/></div> : null }
+                <button type='submit' className='button' onClick={::this.handleImageCoverClick}>Upload image</button>
+                <input type="file" ref="coverInput" style={{display: 'none'}}
+                  onChange={::this.handleImageCoverInput.bind(this)} />
+              </section>
+            </div>
+          </div>
+          : null
+        }
       </div>
     );
   }

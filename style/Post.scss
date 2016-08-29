@@ -10,7 +10,7 @@
     top: $grid*3; right: $grid/2;
     z-index: 9;
 
-    button {
+    > button {
       display: block;
 
       background: transparent;

@@ -17,37 +17,30 @@ export default class NasedkinList extends Component {
     };
   }
 
-  filterByCategory(projects, categorySelected) {
-    let results = new Array();
-    this.props.events.filter(row => row.artist == 'nasedkin').map((project) => {
-      if (project.categories) {
-        project.categories.map((category) => {
-          if (category.value == categorySelected && category.checked) {
-            results.push(project);
-          }
-        });
-      }
-    });
-
-    this.setState({ projects: results });
-  }
-
-  filterByCategoryAll(projects) {
-    this.setState({ projects: projects });
-  }
-
   render() {
-    const { events, actions } = this.props;
-    const nasedkin = events;
-
     return (
       <section className='research-homepage'>
+        <h1>Исследовательская платформа «Искусство и исследование» реализует междисциплинарные проекты на стыке современного искусства и гуманитарных наук.</h1>
         <h1>
-          Исследовательская платформа Department of Research Arts реализует междисциплинарные проекты на стыке современного искусства и современных социальных и гуманитарных наук.
+          <span>Основные направления:</span>
+          <ul>
+            <li>
+              <a href="#">РОССИЯ. RESEARCH</a>
+            </li>
+            <li>
+              <a href="#">ТОПОХРОНИЯ. RESEARCH</a>
+            </li>
+            <li>
+              <a href="#">ТЕРРИТОРИЯ. RESEARCH</a>
+            </li>
+            <li>
+              <a href="#">МЕТОД. RESEARCH</a>
+            </li>
+          </ul>
         </h1>
         <ul className="research-posts-list">
-          {this.state.projects.slice(0,this.props.length).map((event, key) =>
-            <EventItem key={key} row={key} id={event.id} event={event} uploadImage={this.props.uploadImage} {...actions} />
+          {this.state.projects.filter(row => row.isFeatured == true).slice(0,this.props.length).map((event, key) =>
+            <EventItem key={key} row={key} id={event.id} event={event} />
           )}
         </ul>
       </section>
