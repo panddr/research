@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Home from '../components/HomePage';
 import Header from '../components/Header';
-import NasedkinList from '../components/NasedkinList';
 import AsyncBar from '../components/AsyncBar';
 import EventInput from '../components/EventInput';
 
@@ -34,8 +32,8 @@ class PulseApp extends Component {
       <div className="research-container">
         <Header />
         <AsyncBar isWorking={this.props.isWorking} error={this.props.error} />
-        {this.props.home}
-        {this.props.nasedkin}
+        {this.props.ru}
+        {this.props.en}
         {this.props.login}
         {this.props.project}
         {this.props.noMatch}

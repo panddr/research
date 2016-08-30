@@ -21,6 +21,7 @@ import InlineToolbar from '../components/InlineToolbar';
 import ImageComponent from '../components/ImageComponent';
 import ImagesArrayComponent from '../components/ImageArrayComponent';
 import EmbedComponent from '../components/EmbedComponent';
+import Switcher from "../../components/Switcher";
 
 import {stateToHTML} from './export-html/src/main';
 
@@ -37,7 +38,7 @@ const blockRenderMap = Immutable.Map({
     element: 'p'
   },
   'float-text': {
-    element: 'div'
+    element: 'figure'
   }
 });
 
@@ -59,6 +60,8 @@ class RichEditor extends Component {
       title: this.props.title || '',
       description: this.props.description || '',
       coverImage: this.props.coverImage || '',
+      featuredImage: this.props.featuredImage || '',
+      language: this.props.language || '',
       isFeatured: this.props.isFeatured || false,
       id: this.props.id || '',
       loadingImages: false,
@@ -269,6 +272,19 @@ class RichEditor extends Component {
     });
   }
 
+  //Cover image
+
+  handleImageCoverInput(e) {
+    const fileList = e.target.files;
+    const file = fileList[0];
+    this.insertCoverImage(file);
+  }
+
+  handleImageCoverClick() {
+    this.refs.coverInput.click();
+    this.refs.coverInput.value = "";
+  }
+
   insertCoverImage(file) {
     const req = request
       .post('/api/0/images')
@@ -285,21 +301,41 @@ class RichEditor extends Component {
     });
   }
 
-  handleImageCoverClick() {
-    this.refs.coverInput.click();
-    this.refs.coverInput.value = "";
+  //Featured image
+
+  handleImageFeaturedClick() {
+    this.refs.featuredInput.click();
+    this.refs.featuredInput.value = "";
   }
+
+  handleImageFeaturedInput(e) {
+    const fileList = e.target.files;
+    const file = fileList[0];
+    this.insertFeaturedImage(file);
+  }
+
+  insertFeaturedImage(file) {
+    const req = request
+      .post('/api/0/images')
+    req.attach('file', file);
+
+    req.end((err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const obj = JSON.parse(res.text);
+        const key = obj[0].key;
+        this.setState({ featuredImage: 'https://s3-eu-west-1.amazonaws.com/projectsuploads/uploads/images/' + key });
+      }
+    });
+  }
+
+
 
   _handleFileInput(e) {
     const fileList = e.target.files;
     const file = fileList[0];
     this.insertImage(file);
-  }
-
-  handleImageCoverInput(e) {
-    const fileList = e.target.files;
-    const file = fileList[0];
-    this.insertCoverImage(file);
   }
 
   _handleMultipleFileInput(e) {
@@ -343,6 +379,10 @@ class RichEditor extends Component {
     this.setState({ isFeatured: !this.state.isFeatured });
   }
 
+  handleLanguageChange(e) {
+    this.setState({ language: e });
+  }
+
   handleSubmit() {
     let contentState = this.state.editorState.getCurrentContent();
     let html = stateToHTML(contentState, blockRenderersOptions);
@@ -358,24 +398,24 @@ class RichEditor extends Component {
     if (this.state.id && this.state.title) {
       request
         .post('/api/0/events' + '/' + this.state.id)
-        .send({title: this.state.title, html: html, description: this.state.description, coverImage: this.state.coverImage, isFeatured: this.state.isFeatured, id: this.state.id, RawDraftContentState: RawDraftContentState})
+        .send({title: this.state.title, html: html, description: this.state.description, coverImage: this.state.coverImage , featuredImage: this.state.featuredImage, language: this.state.language, isFeatured: this.state.isFeatured, id: this.state.id, RawDraftContentState: RawDraftContentState})
         .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) {
           } else {
-            const url = "/project/" + res.body.slug;
+            const url = "/p/" + res.body.slug;
             location.assign(url);
           }
         });
     } else if (this.state.title) {
       request
         .post('/api/0/events')
-        .send({title: this.state.title, html: html, description: this.state.description, coverImage: this.state.coverImage, isFeatured: this.state.isFeatured, RawDraftContentState: convertToRaw(contentState)})
+        .send({title: this.state.title, html: html, description: this.state.description, coverImage: this.state.coverImage , featuredImage: this.state.featuredImage, language: this.state.language, isFeatured: this.state.isFeatured, RawDraftContentState: RawDraftContentState})
         .set('Accept', 'application/json')
         .end((err, res) => {
           if (err) {
           } else {
-            const url = "/project/" + res.body.slug;
+            const url = "/p/" + res.body.slug;
             location.assign(url);
           }
         });
@@ -388,7 +428,7 @@ class RichEditor extends Component {
     let contentState = this.state.editorState.getCurrentContent();
     let html = stateToHTML(contentState, blockRenderersOptions);
     let RawDraftContentState = convertToRaw(contentState);
-    console.log(this.state.coverImage);
+    console.log(RawDraftContentState);
 
 
     const { editorState, selectedBlock, selectionRange } = this.state;
@@ -456,7 +496,7 @@ class RichEditor extends Component {
           <div className="advanced-settings">
             <header>
               <span>Advanced settings</span>
-              <a href="#" className='button' onClick={::this.toggleAdvancedSettingsPopup}>Save</a>
+              <a href="#" className='button' onClick={::this.toggleAdvancedSettingsPopup}>Close</a>
             </header>
             <div>
               <section>
@@ -470,6 +510,14 @@ class RichEditor extends Component {
                 </label>
               </section>
               <section>
+                <span>Language</span>
+                <Switcher
+                  options  = { optionsLanguage }
+                  type     = 'radio'
+                  value    = { this.state.language }
+                  onChange = { this.handleLanguageChange.bind(this) } />
+              </section>
+              <section>
                 <span>Post description</span>
                 <TextareaAutosize
                   placeholder="Type post description"
@@ -478,12 +526,22 @@ class RichEditor extends Component {
                   onChange={this.handleDescriptionInput} />
               </section>
               <section>
-                <span>Cover image</span>
+                <span>Cover image (~600 progressive jpg)</span>
                 { this.state.coverImage ? <div className="cover-image"><img src={this.state.coverImage}/></div> : null }
                 <button type='submit' className='button' onClick={::this.handleImageCoverClick}>Upload image</button>
                 <input type="file" ref="coverInput" style={{display: 'none'}}
                   onChange={::this.handleImageCoverInput.bind(this)} />
               </section>
+              { this.state.isFeatured ?
+                <section>
+                  <span>Featured image (~2000 progressive jpg ratio 2width/1height)</span>
+                  { this.state.featuredImage ? <div className="featured-image"><img src={this.state.featuredImage}/></div> : null }
+                  <button type='submit' className='button' onClick={::this.handleImageFeaturedClick}>Upload image</button>
+                  <input type="file" ref="featuredInput" style={{display: 'none'}}
+                    onChange={::this.handleImageFeaturedInput.bind(this)} />
+                </section>
+                : null
+              }
             </div>
           </div>
           : null
@@ -494,3 +552,14 @@ class RichEditor extends Component {
 }
 
 export default RichEditor;
+
+const optionsLanguage = [
+  {
+    value: "ru",
+    labelText: "РУ"
+  },
+  {
+    value: "en",
+    labelText: "EN"
+  }
+]

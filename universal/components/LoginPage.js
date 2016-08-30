@@ -7,7 +7,6 @@ import RichEditor from '../editor';
 export default class LoginPage extends Component {
   static propTypes = {
     submitLogin: PropTypes.func.isRequired,
-    uploadImage: PropTypes.func.isRequired,
     isLoggedIn: PropTypes.bool,
     login: PropTypes.string,
     password: PropTypes.string
@@ -52,7 +51,40 @@ export default class LoginPage extends Component {
 
   render() {
     return (
-      <RichEditor />
+      <div className="research-login">
+        {!this.props.isLoggedIn ?
+          <div className="overlay">
+            <form className='form' method="post" action="/api/0/login">
+              <fieldset>
+                <input
+                  type='text'
+                  placeholder='Логин'
+                  onChange={::this.handleLoginChange} />
+                <input
+                  type='password'
+                  placeholder='******'
+                  onChange={::this.handlePasswordChange} />
+                <button
+                  type='submit'
+                  className='button'
+                  onClick={::this.handleSubmit}>
+                  Login
+                </button>
+              </fieldset>
+            </form>
+          </div>
+          :
+          <div>
+            <RichEditor />
+            <button
+              type='submit'
+              className='button button-logout'
+              onClick={::this.handleLogout}>
+              Logout
+            </button>
+          </div>
+        }
+      </div>
     );
   }
 }

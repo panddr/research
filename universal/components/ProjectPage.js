@@ -257,7 +257,9 @@ class ProjectPage extends Component {
           <RichEditor title={project.title}
                       description={project.description}
                       isFeatured={project.isFeatured}
+                      language={project.language}
                       coverImage={project.coverImage}
+                      featuredImage={project.featuredImage}
                       id={id}
                       html={project.html}
                       RawDraftContentState={project.RawDraftContentState}

@@ -24,18 +24,20 @@ export default class EventItem extends Component {
   }
 
   render() {
-    const { id, event } = this.props;
+    const { id, event, image } = this.props;
 
-    const link = '/project/' + event.slug;
+    const link = '/p/' + event.slug;
     const date = moment(event.created).subtract(10, 'days').calendar();
 
     return (
       <li className="research-post-item">
         <article>
           <Link to={link}>
-            <span className="date">{date}</span>
-            <h2 className="title"><span dangerouslySetInnerHTML={this.rawMarkupTitle()} /></h2>
-            { event.coverImage ? <div className="image"><img src={event.coverImage}/></div> : null}
+            <div className="wrapper">
+              <span className="date">{date}</span>
+              <h2 className="title"><span dangerouslySetInnerHTML={this.rawMarkupTitle()} /></h2>
+            </div>
+            { image ? <div className="image"><img src={image}/></div> : null}
             <p>{event.description}</p>
           </Link>
         </article>

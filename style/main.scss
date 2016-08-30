@@ -21,30 +21,33 @@ body {
   }
 
   h1 {
-    @include header-font-size(1.4em,2em,2.6em,2.8em);
+    @include header-font-size(1.1em,1.4em,1.8em,1.8em,2.2em);
     line-height: 1;
   }
 
   h2 {
-    @include header-font-size(1.2em,1.4em,2em,2.2em);
+    @include header-font-size(1em,1.2em,1.4em,1.6em,1.8em);
     line-height: 1;
   }
 
   h3 {
-    @include header-font-size(1.1em,1.3em,1.4em,1.6em);
+    @include header-font-size(1em,1.1em,1.4em,1.5em,1.6em);
     line-height: 1;
   }
 
   h4 {
-    @include header-font-size(1em,1.1em,1.2em,1.2em);
+    @include header-font-size(1em,1.1em,1.2em,1.2em,1.3em);
   }
 
   p {
-    line-height: 1.2;
+    margin-top: 0;
+    line-height: 1.1;
   }
 
   blockquote {
-    @include header-font-size(1.1em,1.3em,1.6em,1.8em);
+    @include header-font-size(1em,1.2em,1.4em,1.6em,1.8em);
+    font-family: $font-family-basic;
+    font-weight: 400;
     line-height: 1;
     margin-bottom: $grid;
     margin-left: $grid;
@@ -70,11 +73,39 @@ body {
   }
 }
 
+form {
+  fieldset {
+    border: 0;
+    padding: 0;
+  }
+}
+
+.button-logout {
+  position: fixed;
+  top: $grid; right: 120px;
+
+  font-size: 16px;
+}
+
+.research-login {
+  max-width: 380px;
+  margin: auto;
+}
+
+.form {
+  input[type=text],
+  input[type=password] {
+    width: 100%;
+    margin-bottom: $grid/2;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
 
 a {
+  transition: color .3s $base-transition-style;
   text-decoration: none;
   color: $color-main;
 
@@ -166,12 +197,13 @@ ol {
 .research-homepage {
   > h1,
   > h2 {
-    margin-bottom: $grid*4;
+    margin-bottom: $grid*2;
     margin-left: $grid;
     margin-right: $grid;
 
     @include respond-to(medium) {
       max-width: $grid-col-fixed*5;
+      margin-bottom: $grid*4;
     }
 
     @include respond-to(large) {
@@ -186,11 +218,15 @@ ol {
     > span {
       display: block;
 
+      font-family: $font-family-basic;
+      font-weight: 400;
       font-size: 21px;
+      margin-bottom: $grid/2;
     }
 
     a {
       border-bottom: 1px solid $color-main;
+      margin-bottom: $grid/2;
 
       &:hover {
         border-color: $color-accent;
@@ -208,23 +244,27 @@ ol {
     margin-left: $grid;
     margin-right: $grid;
 
+    @include respond-to(small) {
+      margin-left: 0;
+      margin-right: 0;
+      width: 50%;
+      padding: $grid;
+    }
+
     @include respond-to(medium) {
-      max-width: $grid-col-fixed*5;
+      width: 33.3%;
     }
 
     @include respond-to(large) {
-      margin-left: $grid-col-percentage*2;
-      margin-right: $grid-col-percentage;
-    }
-
-    @include respond-to(xlarge) {
       width: 25%;
-      margin: 0;
-      padding: $grid;
     }
 
     > article {
       > a {
+        &:hover {
+          color: $color-main;
+        }
+
         > .image {
           margin-bottom: $grid/2;
 
@@ -234,24 +274,72 @@ ol {
           }
         }
 
-        > h2 {
-          font-size: 1.2em;
+        > div {
+          > .date {
+            display: inline-block;
+
+            margin-bottom: $grid/4;
+          }
+        }
+
+        > p {
+          margin: 0;
         }
       }
     }
 
-    &:nth-child(1) {
+    .title {
+      font-size: 1em;
+      transition: color .3s $base-transition-style;
+      margin-bottom: $grid/2;
+
+      @include respond-to(xlarge) {
+        font-size: 1.2em;
+      }
+    }
+
+    a:hover .title {
+      color: $color-accent;
+    }
+  }
+}
+
+.research-posts-list-featured {
+  .research-post-item {
+    margin-left: $grid;
+    margin-right: $grid;
+
+    .title {
+      margin-bottom: $grid/2;
+    }
+
+    .image {
+      margin-bottom: $grid/2;
+    }
+
+    @include respond-to(medium) {
       background: #000;
       position: relative;
       width: 100%;
-      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
       padding: 0;
 
-      .title {
-        color: white;
+      .wrapper {
         position: absolute;
         left: $grid; bottom: $grid;
+        padding-right: $grid;
         z-index: 1;
+        margin-bottom: 0;
+      }
+
+      .title {
+        margin-bottom: 0;
+      }
+
+      .title,
+      .date {
+        color: white;
       }
 
       .image {
@@ -259,10 +347,14 @@ ol {
         margin-bottom: 0;
       }
 
-      .date,
       p {
         display: none;
       }
     }
+  }
+
+  img {
+    display: block;
+    width: 100%;
   }
 }

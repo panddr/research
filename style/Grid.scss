@@ -7,19 +7,20 @@
     flex-wrap: wrap;
 
     margin: 0;
+    margin-right: -$grid;
     padding: 0;
     list-style: none;
     list-style-image: none;
 
     @include respond-to(small) {
       margin-left: $grid;
-      margin-right: $grid;
-      max-width: $grid-col-fixed*5;
+      margin-right: 0;
+      max-width: $grid-col-fixed*5 + $grid;
     }
 
     @include respond-to(large) {
       margin-left: 25%;
-      margin-right: 12.5%;
+      margin-right: 11.5%;
     }
 
     @include respond-to(xlarge) {
@@ -28,30 +29,25 @@
 
     > li {
       margin: 0;
-      width: 48%;
-      margin-bottom: 4%;
+      width: 100%;
+      padding: 0 $grid $grid 0;
 
-      &:nth-child(odd) {
-        margin-left: 0;
-        margin-right: 2%;
-
-        @include respond-to(medium) {
-          margin-right: 1%;
-        }
+      @include respond-to(large) {
+        padding: 0 2% 2% 0;
       }
 
-      &:nth-child(even) {
-        margin-left: 2%;
-        margin-right: 0;
-
-        @include respond-to(medium) {
-          margin-left: 1%;
-        }
+      @include respond-to(xlarge) {
+        padding: 0 $grid $grid 0;
       }
 
-      @include respond-to(medium) {
-        width: 49%;
-        margin-bottom: 2%;
+      &.col-1 {
+        margin: 0;
+        width: 100%;
+      }
+
+      &.col-2 {
+        margin: 0;
+        width: 50%;
       }
 
       > .align-options {

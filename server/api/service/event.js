@@ -45,6 +45,15 @@ export function addEvent(event) {
     .then(response => {
       return Object.assign({}, event, {id: response.generated_keys[0]});
     });
+
+  // if (event.participants) {
+  //   return r
+  //     .table('pulses')
+  //     .insert(event).run()
+  //     .then(response => {
+  //       return Object.assign({}, event, {id: response.generated_keys[0]});
+  //     });
+  // }
 }
 
 export function editEvent(id, event) {

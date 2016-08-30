@@ -32,7 +32,7 @@ class Switcher extends Component {
             value    = { option.value }
             onChange = { this.handleChange.bind(this, option.value) }
             checked  = { this.props.value === option.value } />
-          { option.labelText }
+          <span>{ option.labelText }</span>
         </label>
       );
     });
@@ -40,7 +40,7 @@ class Switcher extends Component {
 
   render() {
     return (
-      <div className="portfolio-switcher">
+      <div className="research-switcher">
         { this.renderOptions() }
       </div>
     );

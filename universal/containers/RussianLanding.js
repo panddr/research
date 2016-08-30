@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import NasedkinList from '../components/NasedkinList';
+import RussianLandingList from '../components/RussianLandingList';
 import * as PulseActions from '../actions/PulseActions';
 
-class Nasedkin extends Component {
+class RussianLanding extends Component {
   static propTypes = {
     editEvent: React.PropTypes.func.isRequired,
     deleteEvent: React.PropTypes.func.isRequired,
@@ -21,7 +21,7 @@ class Nasedkin extends Component {
     };
 
     return (
-      <NasedkinList events={this.props.events} userId={this.props.userId} actions={actions} uploadImage={this.props.uploadImage} />
+      <RussianLandingList events={this.props.events} userId={this.props.userId} actions={actions} uploadImage={this.props.uploadImage} />
     );
   }
 }
@@ -35,4 +35,4 @@ export default connect(
     userId: state.pulseApp.userId
   }),
   dispatch => bindActionCreators(PulseActions, dispatch)
-)(Nasedkin);
+)(RussianLanding);

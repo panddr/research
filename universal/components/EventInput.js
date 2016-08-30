@@ -41,7 +41,7 @@ class EventInput extends Component {
       description: this.props.description || '',
       isFeatured: this.props.isFeatured || true,
       largeCover: this.props.largeCover || true,
-      artist: this.props.artist || 'nasedkin',
+      artist: this.props.artist || 'RussianLanding',
       categories: this.props.categories || optionsCategories,
       yearStart: this.props.yearStart || '',
       yearEnd: this.props.yearEnd || '',
@@ -225,7 +225,7 @@ const optionsImageSize = [
 
 const optionsArtist = [
   {
-    value: "nasedkin",
+    value: "RussianLanding",
     labelText: "Владимир Наседкин",
   },
   {

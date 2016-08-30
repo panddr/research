@@ -3,27 +3,32 @@
 .research-header {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   padding: $grid;
-  margin-bottom: $grid*2;
+  margin-bottom: $grid;
 
   @include respond-to(medium) {
     margin-bottom: $grid*4;
-  }
-
-  a {
-    border-bottom: 1px solid $color-main;
   }
 
   > .wrapper {
     display: flex;
 
     a {
-      margin-left: $grid/2;
+      margin-right: $grid/2;
+
+      @include respond-to(medium) {
+        margin-left: $grid/2;
+      }
     }
 
     .social-links {
-      margin-left: $grid*2;
+      margin-left: $grid;
+
+      @include respond-to(medium) {
+        margin-left: $grid*2;
+      }
     }
   }
 }

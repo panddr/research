@@ -42,8 +42,9 @@
   }
 }
 
-@mixin header-font-size($size-normal, $size-small, $size-medium, $size-large) {
-  font-weight: 400;
+@mixin header-font-size($size-normal, $size-small, $size-medium, $size-large, $size-xlarge) {
+  font-weight: 700;
+  font-family: 'Univers LT CYR';
   line-height: 1.1;
   font-style: normal;
   margin-top: 0;
@@ -53,4 +54,5 @@
   @include respond-to(small)  { font-size: $size-small; }
   @include respond-to(medium) { font-size: $size-medium; }
   @include respond-to(large)  { font-size: $size-large; }
+  @include respond-to(xlarge)  { font-size: $size-xlarge; }
 }

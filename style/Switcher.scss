@@ -1,17 +1,12 @@
 @import "mixins";
 
-.portfolio-switcher {
+.research-switcher {
   align-items: stretch;
   display: flex;
 
   text-transform: uppercase;
   border: 1px solid $color-main;
   margin-bottom: $grid;
-  max-width: 500px;
-
-  &.portfolio-switcher-categories {
-    max-width: 100%;
-  }
 
   > label {
     align-items: stretch;

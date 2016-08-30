@@ -244,8 +244,6 @@ class ImageArrayComponent extends Component {
                   <div className="align-options">
                     <a href="#" className={imgAlign == 'col-1' ? 'active' : null} onClick={::this.alignImage.bind(this, 'col-1', key)}>col-1</a>
                     <a href="#" className={imgAlign == 'col-2' ? 'active' : null} onClick={::this.alignImage.bind(this, 'col-2', key)}>col-2</a>
-                    <a href="#" className={imgAlign == 'col-3' ? 'active' : null} onClick={::this.alignImage.bind(this, 'col-3', key)}>col-3</a>
-                    <a href="#" className={imgAlign == 'col-4' ? 'active' : null} onClick={::this.alignImage.bind(this, 'col-4', key)}>col-4</a>
                   </div>
                 )
               } else {
@@ -313,8 +311,6 @@ class ImageArrayComponent extends Component {
                 <div className="align-options">
                   <a href="#" className={imgAlign == 'col-1' ? 'active' : null} onClick={::this.alignImage.bind(this, 'col-1', key)}>col-1</a>
                   <a href="#" className={imgAlign == 'col-2' ? 'active' : null}onClick={::this.alignImage.bind(this, 'col-2', key)}>col-2</a>
-                  <a href="#" className={imgAlign == 'col-3' ? 'active' : null}onClick={::this.alignImage.bind(this, 'col-3', key)}>col-3</a>
-                  <a href="#" className={imgAlign == 'col-4' ? 'active' : null}onClick={::this.alignImage.bind(this, 'col-4', key)}>col-4</a>
                 </div>
               )
             } else {

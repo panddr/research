@@ -9,7 +9,7 @@ export default class Header extends Component {
   render() {
     return (
       <header className='research-header'>
-        <IndexLink to='/' activeClassName='active'>Искусство и исследования</IndexLink>
+        <IndexLink to='/' activeClassName='active' className="logo">Искусство и исследования</IndexLink>
         <div className='wrapper'>
           <div className='language-links'>
             <IndexLink to='/' activeClassName='active'>РУ</IndexLink>
