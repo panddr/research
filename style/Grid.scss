@@ -27,9 +27,10 @@
       margin-left: $grid-col-fixed*2;
     }
 
-    > li {
+    > li.image {
       margin: 0;
       width: 100%;
+      max-width: 100%;
       padding: 0 $grid $grid 0;
 
       @include respond-to(large) {
@@ -40,18 +41,12 @@
         padding: 0 $grid $grid 0;
       }
 
-      &.col-1 {
-        margin: 0;
-        width: 100%;
-      }
-
       &.col-2 {
-        margin: 0;
         width: 50%;
       }
 
       > .align-options {
-        display: none!important;
+        right: 20px;
       }
 
       figcaption {

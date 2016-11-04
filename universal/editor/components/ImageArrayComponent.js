@@ -24,7 +24,6 @@ class ImageArrayComponent extends Component {
     this._save = () => {
       const entityKey = this.props.block.getEntityAt(0);
       Entity.mergeData(entityKey, {files: this.state.files, grid: this.state.grid});
-      console.log(this.state.grid);
       this.setState({ editingCaption: false });
       this.props.blockProps.onFinishEdit(this.props.block.getKey());
     };
@@ -78,18 +77,7 @@ class ImageArrayComponent extends Component {
   insertMultipleImages(files) {
     this.setState({ loadingImages: true });
     const entityKey = this.props.block.getEntityAt(0);
-    // let filesArray = [];
     let filesArrayToUpload = [];
-    // for (let i=0; i < files.length; i++) {
-    //   const src = URL.createObjectURL(files[i]);
-    //   filesArray.push({src:src});
-    // }
-
-    // let images = filesArray.concat(this.state.files);
-
-    // console.log(images);
-    // this.setState({ files: images });
-    // Entity.mergeData(entityKey, {files: images});
 
     for (let i=0; i<files.length; i++) {
       filesArrayToUpload.push(files[i]);

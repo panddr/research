@@ -239,24 +239,33 @@ ol {
   display: flex;
   flex-wrap: wrap;
 
+  margin-left: $grid;
+  margin-right: 0;
+  margin-bottom: $grid*2;
+
+  @include respond-to(medium) {
+    margin-bottom: $grid*4;
+  }
+
+  @include respond-to(large) {
+    margin-left: $grid-col-percentage*2;
+    margin-right: $grid-col-percentage;
+    max-width: $grid-col-fixed*5;
+  }
+
+  @include respond-to(xlarge) {
+    margin-left: $grid-col-fixed*2;
+  }
+
   .research-post-item {
-    margin-bottom: $grid*2;
-    margin-left: $grid;
-    margin-right: $grid;
+    padding: 0 $grid $grid 0;
 
     @include respond-to(small) {
-      margin-left: 0;
-      margin-right: 0;
       width: 50%;
-      padding: $grid;
     }
 
     @include respond-to(medium) {
       width: 33.3%;
-    }
-
-    @include respond-to(large) {
-      width: 25%;
     }
 
     > article {
@@ -279,11 +288,13 @@ ol {
             display: inline-block;
 
             margin-bottom: $grid/4;
+            font-size: 16px;
           }
         }
 
         > p {
           margin: 0;
+          font-size: 16px;
         }
       }
     }
@@ -292,10 +303,6 @@ ol {
       font-size: 1em;
       transition: color .3s $base-transition-style;
       margin-bottom: $grid/2;
-
-      @include respond-to(xlarge) {
-        font-size: 1.2em;
-      }
     }
 
     a:hover .title {
@@ -305,6 +312,11 @@ ol {
 }
 
 .research-posts-list-featured {
+  margin-bottom: $grid*2;
+  @include respond-to(medium) {
+    margin-bottom: $grid*4;
+  }
+
   .research-post-item {
     margin-left: $grid;
     margin-right: $grid;
@@ -331,6 +343,19 @@ ol {
         padding-right: $grid;
         z-index: 1;
         margin-bottom: 0;
+
+        @include respond-to(medium) {
+          max-width: $grid-col-fixed*5;
+        }
+
+        @include respond-to(large) {
+          left: $grid-col-percentage*2;
+          right: $grid-col-percentage;
+        }
+
+        @include respond-to(xlarge) {
+          left: $grid-col-fixed*2;
+        }
       }
 
       .title {

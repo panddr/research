@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import AsyncBar from '../components/AsyncBar';
 import EventInput from '../components/EventInput';
 
@@ -37,6 +38,7 @@ class PulseApp extends Component {
         {this.props.login}
         {this.props.project}
         {this.props.noMatch}
+        <Footer />
       </div>
     );
   }
